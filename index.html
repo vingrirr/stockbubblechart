@@ -44,105 +44,120 @@
     let qrt = "Q1 2020";
 
     qrtResult.x = 20;
-    qrtResult.x = 10;
+    qrtResult.y = 10;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
-    
+qrtResult = {};
 
     qrtResult.x = 40;
-    qrtResult.x = 50;
+    qrtResult.y = 50;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
+qrtResult = {};
 
     qrtResult.x = 50;
-    qrtResult.x = 30;
+    qrtResult.y = 30;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
+qrtResult = {};
 
     qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
-
+    qrtArray = [];
 
     qrt = "Q2 2020";
     qrtResult.x = 25;
     qrtResult.y = 15;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
+    qrtResult = {};
 
     qrtResult.x = 45;
     qrtResult.y = 55;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
+    qrtResult = {};
 
     qrtResult.x = 55;
     qrtResult.y = 35;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
+    qrtResult = {};
 
     qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
+    qrtArray = [];
+
 
     qrt = "Q3 2020";
     qrtResult.x = 30;
     qrtResult.y = 20;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
+qrtResult = {};
 
     qrtResult.x = 50;
     qrtResult.y = 60;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
+    qrtResult = {};
 
     qrtResult.x = 60;
     qrtResult.y = 40;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
+qrtResult = {};
 
     qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
+qrtArray = [];
+
 
     qrt = "Q4 2020";
     qrtResult.x = 35;
     qrtResult.y = 25;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
+qrtResult = {};
 
     qrtResult.x = 55;
     qrtResult.y = 65;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
+qrtResult = {};
 
     qrtResult.x = 65;
     qrtResult.y = 45;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
+    qrtResult = {};
 
     qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
+    qrtArray = [];
 
 
+    //  for (var year = firstYear; year <= lastYear; year++) {
+    //    var data = [];
+    //    yearData[year] = data;
 
-     for (var year = firstYear; year <= lastYear; year++) {
-       var data = [];
-       yearData[year] = data;
-
-       for (var i = 0; i < 10; i++) {
-         if (year == firstYear) {
-           data.push({
-             x: Math.round(Math.random() * 100 - 90),
-             y: Math.round(Math.random() * 100 - 90),
-             value: Math.round(Math.random() * 1000)
-           });
-         } else {
-           var previous = yearData[year - 1][i];
-           data.push({
-             x: previous.x + Math.round(Math.random() * 5 - 2 + i / 50),
-             y: previous.y + Math.round(Math.random() * 5 - 2 + i / 50),
-             value: Math.abs(previous.value + Math.round(Math.random() * 100 - 45))
-           });
-         }
-       }
-     }
+    //    for (var i = 0; i < 10; i++) {
+    //      if (year == firstYear) {
+    //        data.push({
+    //          x: Math.round(Math.random() * 100 - 90),
+    //          y: Math.round(Math.random() * 100 - 90),
+    //          value: Math.round(Math.random() * 1000)
+    //        });
+    //      } else {
+    //        var previous = yearData[year - 1][i];
+    //        data.push({
+    //          x: previous.x + Math.round(Math.random() * 5 - 2 + i / 50),
+    //          y: previous.y + Math.round(Math.random() * 5 - 2 + i / 50),
+    //          value: Math.abs(previous.value + Math.round(Math.random() * 100 - 45))
+    //        });
+    //      }
+    //    }
+    //  }
 
     // Create chart
     // https://www.amcharts.com/docs/v5/charts/xy-chart/
@@ -378,14 +393,15 @@
       slider.events.on("rangechanged", function () {
         
         //this makes it an index for qrts
-        //console.log("slider: "+  Math.round((100 * (slider.get("start", 0)))))
+        console.log("slider: "+  Math.round((100 * (slider.get("start", 0)))))
         updateSeriesData(
           Math.round((100 * (slider.get("start", 0))))
         );
       });
       function updateSeriesData(index) {
 
-        if (index != 0){
+        console.log("index: "+index);
+        if (index != 0 && index <4){
         let qrt = qrtList[index];
         //console.log("qrt: "+quarterData[qrt]);
 
@@ -418,8 +434,8 @@
       //     label.set("text", year.toString());
       //   }
       // }
-
-      series.data.setAll(yearData[currentYear]);
+      qrt = qrtList[0];
+      series.data.setAll(quarterData[qrt]);
 
       // Make stuff animate on load
       // https://www.amcharts.com/docs/v5/concepts/animations/
