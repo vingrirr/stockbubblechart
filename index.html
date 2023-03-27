@@ -1,49 +1,54 @@
 <!-- Styles -->
 <style>
-    #chartdiv {
-      width: 100%;
-      height: 500px;
-      max-width: 100%;
-    }
-    </style>
-    
-    
-    <!-- Resources -->
-    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-    
-    <!-- Chart code -->
-    <script>
-    am5.ready(function() {
-    
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+    max-width: 100%;
+  }
+</style>
+
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+<!-- Chart code -->
+<script>
+  
+  let qrtList = [];
+
+  am5.ready(function () {
+
     // Create root element
     // https://www.amcharts.com/docs/v5/getting-started/#Root_element
     var root = am5.Root.new("chartdiv");
-    
+
     // Set themes
     // https://www.amcharts.com/docs/v5/concepts/themes/
     root.setThemes([
       am5themes_Animated.new(root)
     ]);
-    
+
     var yearData = {};
     var firstYear = 1950;
     var lastYear = 2022;
     var currentYear = firstYear;
-    
 
-    let quarterData ={};
+
+    let quarterData = {};
     let qrtArray = [];
+  
     let qrtResult = {};
 
     let qrt = "Q1 2020";
-    
+
     qrtResult.x = 20;
     qrtResult.x = 10;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
     
+
     qrtResult.x = 40;
     qrtResult.x = 50;
     qrtResult.value = "MSFT";
@@ -54,86 +59,90 @@
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
 
+    qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
 
 
     qrt = "Q2 2020";
     qrtResult.x = 25;
-    qrtResult.x = 15;
+    qrtResult.y = 15;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
-    
+
     qrtResult.x = 45;
-    qrtResult.x = 55;
+    qrtResult.y = 55;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
 
     qrtResult.x = 55;
-    qrtResult.x = 35;
+    qrtResult.y = 35;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
 
+    qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
 
     qrt = "Q3 2020";
     qrtResult.x = 30;
-    qrtResult.x = 20;
+    qrtResult.y = 20;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
-    
+
     qrtResult.x = 50;
-    qrtResult.x = 60;
+    qrtResult.y = 60;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
 
     qrtResult.x = 60;
-    qrtResult.x = 40;
+    qrtResult.y = 40;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
 
+    qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
 
     qrt = "Q4 2020";
     qrtResult.x = 35;
-    qrtResult.x = 25;
+    qrtResult.y = 25;
     qrtResult.value = "GTLB";
     qrtArray.push(qrtResult);
-    
+
     qrtResult.x = 55;
-    qrtResult.x = 65;
+    qrtResult.y = 65;
     qrtResult.value = "MSFT";
     qrtArray.push(qrtResult);
 
     qrtResult.x = 65;
-    qrtResult.x = 45;
+    qrtResult.y = 45;
     qrtResult.value = "NET";
     qrtArray.push(qrtResult);
 
+    qrtList.push(qrt);
     quarterData[qrt] = qrtArray;
 
 
 
-    // for (var year = firstYear; year <= lastYear; year++) {
-    //   var data = [];
-    //   yearData[year] = data;
-    
-    //   for (var i = 0; i < 10; i++) {
-    //     if (year == firstYear) {
-    //       data.push({
-    //         x: Math.round(Math.random() * 100 - 90),
-    //         y: Math.round(Math.random() * 100 - 90),
-    //         value: Math.round(Math.random() * 1000)
-    //       });
-    //     } else {
-    //       var previous = yearData[year - 1][i];
-    //       data.push({
-    //         x: previous.x + Math.round(Math.random() * 5 - 2 + i / 50),
-    //         y: previous.y + Math.round(Math.random() * 5 - 2 + i / 50),
-    //         value: Math.abs(previous.value + Math.round(Math.random() * 100 - 45))
-    //       });
-    //     }
-    //   }
-    // }
+     for (var year = firstYear; year <= lastYear; year++) {
+       var data = [];
+       yearData[year] = data;
+
+       for (var i = 0; i < 10; i++) {
+         if (year == firstYear) {
+           data.push({
+             x: Math.round(Math.random() * 100 - 90),
+             y: Math.round(Math.random() * 100 - 90),
+             value: Math.round(Math.random() * 1000)
+           });
+         } else {
+           var previous = yearData[year - 1][i];
+           data.push({
+             x: previous.x + Math.round(Math.random() * 5 - 2 + i / 50),
+             y: previous.y + Math.round(Math.random() * 5 - 2 + i / 50),
+             value: Math.abs(previous.value + Math.round(Math.random() * 100 - 45))
+           });
+         }
+       }
+     }
 
     // Create chart
     // https://www.amcharts.com/docs/v5/charts/xy-chart/
@@ -141,10 +150,10 @@
       panX: true,
       panY: true,
       wheelY: "zoomXY",
-      pinchZoomX:true,
-      pinchZoomY:true
+      pinchZoomX: true,
+      pinchZoomY: true
     }));
-    
+
     // Create axes
     // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
@@ -153,14 +162,14 @@
       renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 50 }),
       tooltip: am5.Tooltip.new(root, {})
     }));
-    
+
     var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
       min: -100,
       max: 100,
       renderer: am5xy.AxisRendererY.new(root, {}),
       tooltip: am5.Tooltip.new(root, {})
     }));
-    
+
     // color fills
     var series0 = chart.series.push(am5xy.LineSeries.new(root, {
       xAxis: xAxis,
@@ -177,7 +186,7 @@
       { ax: 0, ay: 200 },
       { ax: -200, ay: 200 }
     ]);
-    
+
     var series1 = chart.series.push(am5xy.LineSeries.new(root, {
       xAxis: xAxis,
       yAxis: yAxis,
@@ -193,7 +202,7 @@
       { ax: 0, ay: -200 },
       { ax: -200, ay: -200 }
     ]);
-    
+
     var series2 = chart.series.push(am5xy.LineSeries.new(root, {
       xAxis: xAxis,
       yAxis: yAxis,
@@ -209,7 +218,7 @@
       { ax: 0, ay: -200 },
       { ax: 200, ay: -200 }
     ]);
-    
+
     var series3 = chart.series.push(am5xy.LineSeries.new(root, {
       xAxis: xAxis,
       yAxis: yAxis,
@@ -225,13 +234,13 @@
       { ax: 0, ay: 200 },
       { ax: 200, ay: 200 }
     ]);
-    
+
     // move grid forward
     chart.plotContainer.children.moveValue(
       chart.gridContainer,
       chart.plotContainer.children.length - 1
     );
-    
+
     // Create series
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
     var series = chart.series.push(am5xy.LineSeries.new(root, {
@@ -242,9 +251,9 @@
       valueXField: "x",
       valueField: "value"
     }));
-    
+
     series.strokes.template.set("visible", false);
-    
+
     // Add bullet
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/#Bullets
     var circleTemplate = am5.Template.new({});
@@ -255,140 +264,168 @@
         fill: am5.color(0x000000),
         fillOpacity: 0.6,
         tooltipText: "x: {valueX} y:{valueY} value: {value}"
-      }, circleTemplate);      
+      }, circleTemplate);
 
       return am5.Bullet.new(root, {
         sprite: bulletCircle
       });
-   
+    });
 
-  series.bullets.push(function(root) {
-  return am5.Bullet.new(root, {    
-    sprite: am5.Label.new(root, {
-      locationX: 0.5,
-      locationY: 0.5,
-      text: "{value}",
-      centerX: am5.percent(50),
-      centerY: am5.percent(50),
-      fill: am5.color(0x999999),
-      populateText: true
-    })
-  });
-});
-    
-    // Add heat rule
-    // https://www.amcharts.com/docs/v5/concepts/settings/heat-rules/
-    // series.set("heatRules", [{
-    //   target: circleTemplate,
-    //   min: 3,
-    //   max: 35,
-    //   dataField: "value",
-    //   key: "radius", maxValue:2000
-    // }]);
 
-    
-
-    
-    // Add cursor
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-    chart.set("cursor", am5xy.XYCursor.new(root, {
-      xAxis: xAxis,
-      yAxis: yAxis
-    }));
-    
-    // Add scrollbars
-    // https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
-    chart.set("scrollbarX", am5.Scrollbar.new(root, {
-      orientation: "horizontal"
-    }));
-    
-    chart.set("scrollbarY", am5.Scrollbar.new(root, {
-      orientation: "vertical"
-    }));
-    
-    // Label
-    var label = chart.plotContainer.children.push(am5.Label.new(root, {
-      text: currentYear.toString(),
-      fontSize: "5em",
-      fill: am5.color(0x000000),
-      opacity: 0.3
-    }));
-    
-    // Create controls
-    var container = chart.plotContainer.children.push(am5.Container.new(root, {
-      y: am5.p100,
-      centerX: am5.p50,
-      centerY: am5.p100,
-      x: am5.p50,
-      width: am5.percent(90),
-      layout: root.horizontalLayout,
-      paddingBottom: 10
-    }));
-    
-    var playButton = container.children.push(am5.Button.new(root, {
-      themeTags: ["play"],
-      centerY: am5.p50,
-      marginRight: 20,
-      icon: am5.Graphics.new(root, {
-        themeTags: ["icon"]
-      })
-    }));
-    
-    playButton.events.on("click", function () {
-      if (playButton.get("active")) {
-        slider.set("start", slider.get("start") + 0.0001);
-      } else {
-        slider.animate({
-          key: "start",
-          to: 1,
-          duration: 15000 * (1 - slider.get("start"))
+      series.bullets.push(function (root) {
+        return am5.Bullet.new(root, {
+          sprite: am5.Label.new(root, {
+            locationX: 0.5,
+            locationY: 0.5,
+            text: "{value}",
+            centerX: am5.percent(50),
+            centerY: am5.percent(50),
+            fill: am5.color(0x999999),
+            populateText: true
+          })
         });
-      }
-    });
-    
-    var slider = container.children.push(am5.Slider.new(root, {
-      orientation: "horizontal",
-      start: 0,
-      centerY: am5.p50
-    }));
-    
-    slider.on("start", function (start) {
-      if (start === 1) {
-        playButton.set("active", false);
-      }
-    });
-    
-    slider.events.on("rangechanged", function () {
-      updateSeriesData(
-        firstYear + Math.round(slider.get("start", 0) * (lastYear - firstYear))
-      );
-    });
-    
-    function updateSeriesData(year) {
-      if (currentYear != year) {
-        currentYear = year;
-        var data = yearData[year];
-    
-        var i = 0;
-        am5.array.each(data, function (item) {
-          series.data.setIndex(i, item);
-          i++;
-        });
-    
-        label.set("text", year.toString());
-      }
-    }
-    
-    series.data.setAll(yearData[currentYear]);
-    
-    // Make stuff animate on load
-    // https://www.amcharts.com/docs/v5/concepts/animations/
-    series.appear(1000);
-    chart.appear(1000, 100);
-    
-    }); // end am5.ready()
-    </script>
-    
-    <!-- HTML -->
+      });
 
-    <div id="chartdiv"></div>
+      // Add heat rule
+      // https://www.amcharts.com/docs/v5/concepts/settings/heat-rules/
+      // series.set("heatRules", [{
+      //   target: circleTemplate,
+      //   min: 3,
+      //   max: 35,
+      //   dataField: "value",
+      //   key: "radius", maxValue:2000
+      // }]);
+
+
+
+
+      // Add cursor
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+      chart.set("cursor", am5xy.XYCursor.new(root, {
+        xAxis: xAxis,
+        yAxis: yAxis
+      }));
+
+      // Add scrollbars
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
+      chart.set("scrollbarX", am5.Scrollbar.new(root, {
+        orientation: "horizontal"
+      }));
+
+      chart.set("scrollbarY", am5.Scrollbar.new(root, {
+        orientation: "vertical"
+      }));
+
+      // Label
+      var label = chart.plotContainer.children.push(am5.Label.new(root, {
+        text: currentYear.toString(),
+        fontSize: "5em",
+        fill: am5.color(0x000000),
+        opacity: 0.3
+      }));
+
+      // Create controls
+      var container = chart.plotContainer.children.push(am5.Container.new(root, {
+        y: am5.p100,
+        centerX: am5.p50,
+        centerY: am5.p100,
+        x: am5.p50,
+        width: am5.percent(90),
+        layout: root.horizontalLayout,
+        paddingBottom: 10
+      }));
+
+      var playButton = container.children.push(am5.Button.new(root, {
+        themeTags: ["play"],
+        centerY: am5.p50,
+        marginRight: 20,
+        icon: am5.Graphics.new(root, {
+          themeTags: ["icon"]
+        })
+      }));
+
+      playButton.events.on("click", function () {
+        if (playButton.get("active")) {
+          slider.set("start", slider.get("start") + 0.0001);
+        } else {
+          slider.animate({
+            key: "start",
+            to: 1,
+            duration: 15000 * (1 - slider.get("start"))
+          });
+        }
+      });
+
+      var slider = container.children.push(am5.Slider.new(root, {
+        orientation: "horizontal",
+        start: 0,
+        centerY: am5.p50
+      }));
+
+      slider.on("start", function (start) {
+        if (start === 1) {
+          playButton.set("active", false);
+        }
+      });
+
+      // slider.events.on("rangechanged", function () {
+      //   console.log("slider: "+Math.round(slider.get("start", 0) * (lastYear - firstYear)))
+      //   updateSeriesData(
+      //     firstYear + Math.round(slider.get("start", 0) * (lastYear - firstYear))
+      //   );
+      // });
+
+      slider.events.on("rangechanged", function () {
+        
+        //this makes it an index for qrts
+        //console.log("slider: "+  Math.round((100 * (slider.get("start", 0)))))
+        updateSeriesData(
+          Math.round((100 * (slider.get("start", 0))))
+        );
+      });
+      function updateSeriesData(index) {
+
+        if (index != 0){
+        let qrt = qrtList[index];
+        //console.log("qrt: "+quarterData[qrt]);
+
+        let data = quarterData[qrt];
+        // if (currentYear != year) {
+        //   currentYear = year;
+        //   var data = yearData[year];
+
+           var i = 0;
+           am5.array.each(data, function (item) {
+             series.data.setIndex(i, item);
+             i++;
+           });
+
+          label.set("text", qrt);
+        }
+      }
+
+      // function updateSeriesData(year) {
+      //   if (currentYear != year) {
+      //     currentYear = year;
+      //     var data = yearData[year];
+
+      //     var i = 0;
+      //     am5.array.each(data, function (item) {
+      //       series.data.setIndex(i, item);
+      //       i++;
+      //     });
+
+      //     label.set("text", year.toString());
+      //   }
+      // }
+
+      series.data.setAll(yearData[currentYear]);
+
+      // Make stuff animate on load
+      // https://www.amcharts.com/docs/v5/concepts/animations/
+      series.appear(1000);
+      chart.appear(1000, 100);
+  }); // end am5.ready()
+</script>
+
+<div id="chartdiv"></div>

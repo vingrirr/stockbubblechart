@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "name": "Launch Chrome",
             "request": "launch",
-            "name": "Open index.html",
-            "file": "/home/vingrirr/code/stockBubbleChart/stockbubblechart/index.html"
+            "type": "chrome",            
+            "file": "C:\\code\\stockbubblechart\\stockbubblechart\\index.html"
         }
     ]
 }
