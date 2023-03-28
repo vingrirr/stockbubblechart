@@ -16,42 +16,434 @@
 <!-- Chart code -->
 <script>
 
-  let qrt="";
+  let qrt = "";
   let quarterData = {};
   let qrtArray = [];
   let qrtResult = {};
-  let qrtList = ["Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023"];
-  let stockList = ["CRM",	"CRWD","DDOG","DOCN","DOCU","DT",	"ESTC","FORG","FSLY","FTNT","GTLB","HUBS","MDB",	"MSFT","NCNO","NET","OKTA","PANW","PD","PLTR","S","SNOW","TENB","TTD","TWLO","U","VEEV","ZS"];
+  let qrtList = ["Q1 2020", "Q2 2020", "Q3 2020", "Q4 2020", "Q1 2021", "Q2 2021", "Q3 2021", "Q4 2021", "Q1 2022", "Q2 2022", "Q3 2022", "Q4 2022", "Q1 2023"];
+  let stockList = ["CRM", "CRWD", "DDOG", "DOCN", "DOCU", "DT", "ESTC", "FORG", "FSLY", "FTNT", "GTLB", "HUBS", "MDB", "MSFT", "NCNO", "NET", "OKTA", "PANW", "PD", "PLTR", "S", "SNOW", "TENB", "TTD", "TWLO", "U", "VEEV", "ZS"];
 
-  let randData ={
-      "CRM": [21, 25],
-      "CRWD": [17, 58],
-      "DDOG": [17, 58],
-      "DOCN": [9, 34],
-      "DOCU": [7, 16],
-      "DT": [33, 26],
-      "ESTC": [-5, 44],
-      "FORG": [-26, 20],
-      "FSLY": [-32, 22],
-      "FTNT": [33, 42],
-      "GTLB": [-32, 70],
-      "HUBS": [11, 34],
-      "MDB": [-3, 53],
-      "MSFT": [37, 10],
-      "NCNO": [-12,34],
-      "NET": [-17, 0.3],
-      "OKTA": [-3, 61],
-      "PANW": [29, 26],
-      "PD": [-9, 33],
-      "PLTR": [6, 24],
-      "S": [8, 25],
-      "SNOW": [55, 11],
-      "TENB": [20, 26],
-      "TTD": [31, 32],
-      "TWLO": [-12, 51],
-      "U": [-7, 25],
-      "VEEV": [39, 16],
-      "ZS": [11, 57]
+  let randData = {
+    "CRM": {
+      "Q1 2020": [21, 25],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "CRWD": {
+      "Q1 2020": [17, 58],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "DDOG": {
+      "Q1 2020": [13, 55],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "DOCN": {
+      "Q1 2020": [9, 34],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "DOCU": {
+      "Q1 2020": [7, 16],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "DT": {
+      "Q1 2020": [33, 26],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "ESTC": {
+      "Q1 2020": [-5, 44],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "FORG": {
+      "Q1 2020": [-26, 20],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "FSLY": {
+      "Q1 2020": [-32, 22],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "FTNT": {
+      "Q1 2020": [33, 42],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "GTLB": {
+      "Q1 2020": [-32, 70],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "HUBS": {
+      "Q1 2020": [11, 34],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "MDB": {
+      "Q1 2020": [-3, 53],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "MSFT": {
+      "Q1 2020": [37, 10],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "NCNO": {
+      "Q1 2020": [-12, 34],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "NET": {
+      "Q1 2020": [-17, 50],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "OKTA": {
+      "Q1 2020": [-3, 61],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "PANW": {
+      "Q1 2020": [29, 26],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "PD": {
+      "Q1 2020": [-9, 33],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "PLTR": {
+      "Q1 2020": [6, 24],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "S": {
+      "Q1 2020": [8, 25],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "SNOW": {
+      "Q1 2020": [55, 11],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "TENB": {
+      "Q1 2020": [20, 26],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "TTD": {
+      "Q1 2020": [31, 32],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "TWLO": {
+      "Q1 2020": [-12, 51],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "U": {
+      "Q1 2020": [-7, 25],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "VEEV": {
+      "Q1 2020": [39, 16],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    },
+    "ZS": {
+      "Q1 2020": [11, 57],
+      "Q2 2020": [21, 25],
+      "Q3 2020": [21, 25],
+      "Q4 2020": [21, 25],
+      "Q1 2021": [21, 25],
+      "Q2 2021": [21, 25],
+      "Q3 2021": [21, 25],
+      "Q4 2021": [21, 25],
+      "Q1 2022": [21, 25],
+      "Q2 2022": [21, 25],
+      "Q3 2022": [21, 25],
+      "Q4 2022": [21, 25],
+      "Q1 2023": [21, 25]
+    }
   };
 
 
@@ -66,29 +458,45 @@
   am5.ready(function () {
 
 
-    let d = randData["CRM"];
+    //let d = randData["CRM"]["Q1 2020"];
+
     // Create root element
     // https://www.amcharts.com/docs/v5/getting-started/#Root_element
     var root = am5.Root.new("chartdiv");
 
     // Set themes
     // https://www.amcharts.com/docs/v5/concepts/themes/
+    var myTheme = am5.Theme.new(root);
+
+    myTheme.rule("Grid", ["base"]).setAll({
+      strokeOpacity: 1,
+      strokeWidth: 2
+    });
     root.setThemes([
-      am5themes_Animated.new(root)
+      am5themes_Animated.new(root),
+      myTheme
     ]);
 
 
 
 
-    for(let x=0; x< qrtList.length; x++){
-      for (let i=0; i< stockList.length; i++){
+    for (let x = 0; x < qrtList.length; x++) {
+      for (let i = 0; i < stockList.length; i++) {
 
         qrt = qrtList[x];
-        qrtResult.x = getRandomIntInclusive(10,45);
-        qrtResult.y = getRandomIntInclusive(10,90);
-        qrtResult.value = stockList[i];
+        var stk = stockList[i];
+        var vals = randData[stk];
+        //if (x==0){
+        qrtResult.x = vals[0];
+        qrtResult.y = vals[1];
+        // }else{
+
+        //   qrtResult.x = vals[0] + getRandomIntInclusive(0,10);
+        //   qrtResult.y = vals[1] + getRandomIntInclusive(0,15);
+        // }
+        qrtResult.value = stk;
         qrtArray.push(qrtResult);
-        
+
         qrtResult = {};
       }
       quarterData[qrt] = qrtArray;
@@ -96,68 +504,21 @@
 
     }
 
-    //let qrt = ;
-    // qrtResult.x = 20;
-    // qrtResult.y = 10;
-    // qrtResult.value = "GTLB";
-    // qrtArray.push(qrtResult);
-    // qrtResult = {};
-
-    // qrtResult.x = 40;
-    // qrtResult.y = 50;
-    // qrtResult.value = "MSFT";
-    // qrtArray.push(qrtResult);
-    // qrtResult = {};
-
-    // qrtResult.x = 50;
-    // qrtResult.y = 30;
-    // qrtResult.value = "NET";
-    // qrtArray.push(qrtResult);
-    // qrtResult = {};
-
-    // qrtList.push(qrt);
-    // quarterData[qrt] = qrtArray;    
-    // qrtArray = [];
-
-
-    //  for (var year = firstYear; year <= lastYear; year++) {
-    //    var data = [];
-    //    yearData[year] = data;
-
-    //    for (var i = 0; i < 10; i++) {
-    //      if (year == firstYear) {
-    //        data.push({
-    //          x: Math.round(Math.random() * 100 - 90),
-    //          y: Math.round(Math.random() * 100 - 90),
-    //          value: Math.round(Math.random() * 1000)
-    //        });
-    //      } else {
-    //        var previous = yearData[year - 1][i];
-    //        data.push({
-    //          x: previous.x + Math.round(Math.random() * 5 - 2 + i / 50),
-    //          y: previous.y + Math.round(Math.random() * 5 - 2 + i / 50),
-    //          value: Math.abs(previous.value + Math.round(Math.random() * 100 - 45))
-    //        });
-    //      }
-    //    }
-    //  }
-
     // Create chart
     // https://www.amcharts.com/docs/v5/charts/xy-chart/
     var chart = root.container.children.push(am5xy.XYChart.new(root, {
-      panX: true,
-      panY: true,
-      wheelY: "zoomXY",
-      pinchZoomX: true,
-      pinchZoomY: true
+      panX: false,
+      panY: false,
+      //wheelY: "zoomXY",
+      pinchZoomX: false,
+      pinchZoomY: false
     }));
 
     // Create axes
     // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
       text: "TTM Unlevered Pretax FCR Margin %",
-      min: -50,
-      max: 50,
+
       numberFormat: "#'%'",
       renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 50 }),
       tooltip: am5.Tooltip.new(root, {})
@@ -165,8 +526,7 @@
 
     var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
       text: "TTM Revenue Growth %",
-      min: 0,
-      max: 100,
+
       numberFormat: "#'%'",
       renderer: am5xy.AxisRendererY.new(root, {}),
       tooltip: am5.Tooltip.new(root, {})
@@ -262,10 +622,10 @@
     series.bullets.push(function () {
       var bulletCircle = am5.Circle.new(root, {
 
-        radius: 15,
+        radius: 25,
         fill: am5.color(0x000000),
         fillOpacity: 0.6,
-        tooltipText: "x: {valueX} y:{valueY} value: {value}"
+        tooltipText: "x: {valueX} y: {valueY} value: {value}"
       }, circleTemplate);
 
       return am5.Bullet.new(root, {
@@ -274,121 +634,132 @@
     });
 
 
-      series.bullets.push(function (root) {
-        return am5.Bullet.new(root, {
-          sprite: am5.Label.new(root, {
-            locationX: 0.5,
-            locationY: 0.5,
-            text: "{value}",
-            centerX: am5.percent(50),
-            centerY: am5.percent(50),
-            fill: am5.color(0x999999),
-            populateText: true
-          })
-        });
-      });
-
-      // Add heat rule
-      // https://www.amcharts.com/docs/v5/concepts/settings/heat-rules/
-      // series.set("heatRules", [{
-      //   target: circleTemplate,
-      //   min: 3,
-      //   max: 35,
-      //   dataField: "value",
-      //   key: "radius", maxValue:2000
-      // }]);
-
-
-
-
-      // Add cursor
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-      chart.set("cursor", am5xy.XYCursor.new(root, {
-        xAxis: xAxis,
-        yAxis: yAxis
-      }));
-
-      // Add scrollbars
-      // https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
-      chart.set("scrollbarX", am5.Scrollbar.new(root, {
-        orientation: "horizontal"
-      }));
-
-      chart.set("scrollbarY", am5.Scrollbar.new(root, {
-        orientation: "vertical"
-      }));
-
-      // Label
-      var label = chart.plotContainer.children.push(am5.Label.new(root, {
-        text: qrtList[0],
-        fontSize: "5em",
-        fill: am5.color(0x000000),
-        opacity: 0.3
-      }));
-
-      // Create controls
-      var container = chart.plotContainer.children.push(am5.Container.new(root, {
-        y: am5.p100,
-        centerX: am5.p50,
-        centerY: am5.p100,
-        x: am5.p50,
-        width: am5.percent(90),
-        layout: root.horizontalLayout,
-        paddingBottom: 10
-      }));
-
-      var playButton = container.children.push(am5.Button.new(root, {
-        themeTags: ["play"],
-        centerY: am5.p50,
-        marginRight: 20,
-        icon: am5.Graphics.new(root, {
-          themeTags: ["icon"]
+    series.bullets.push(function (root) {
+      return am5.Bullet.new(root, {
+        sprite: am5.Label.new(root, {
+          locationX: 0.5,
+          locationY: 0.5,
+          text: "{value}",
+          centerX: am5.percent(50),
+          centerY: am5.percent(50),
+          fill: am5.color(0xFFFFFF),
+          populateText: true
         })
-      }));
-
-      playButton.events.on("click", function () {
-        if (playButton.get("active")) {
-          slider.set("start", slider.get("start") + 0.0001);
-        } else {
-          slider.animate({
-            key: "start",
-            to: 1,
-            duration: 85000 * (1 - slider.get("start")) //this sets speed of animation
-          });
-        }
       });
+    });
 
-      var slider = container.children.push(am5.Slider.new(root, {
-        orientation: "horizontal",
-        start: 0,
-        centerY: am5.p50
-      }));
+    // Add heat rule
+    // https://www.amcharts.com/docs/v5/concepts/settings/heat-rules/
+    // series.set("heatRules", [{
+    //   target: circleTemplate,
+    //   min: 3,
+    //   max: 35,
+    //   dataField: "value",
+    //   key: "radius", maxValue:2000
+    // }]);
 
-      slider.on("start", function (start) {
-        if (start === 1) {
-          playButton.set("active", false);
-        }
-      });
 
-      // slider.events.on("rangechanged", function () {
-      //   console.log("slider: "+Math.round(slider.get("start", 0) * (lastYear - firstYear)))
-      //   updateSeriesData(
-      //     firstYear + Math.round(slider.get("start", 0) * (lastYear - firstYear))
-      //   );
-      // });
 
-      slider.events.on("rangechanged", function () {
-        
-        //this makes it an index for qrts
-        console.log("slider: "+  Math.round((100 * (slider.get("start", 0)))))
-        updateSeriesData(
-          Math.round((100 * (slider.get("start", 0))))
-        );
-      });
-      function updateSeriesData(index) {
 
-        console.log("index: "+index);
-        if (index != 0 && index < qrtList.length){
+    // Add cursor
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+    chart.set("cursor", am5xy.XYCursor.new(root, {
+      xAxis: xAxis,
+      yAxis: yAxis
+    }));
+
+    // Add scrollbars
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
+    chart.set("scrollbarX", am5.Scrollbar.new(root, {
+      orientation: "horizontal"
+    }));
+
+    chart.set("scrollbarY", am5.Scrollbar.new(root, {
+      orientation: "vertical"
+    }));
+
+    // Label
+    var label = chart.plotContainer.children.push(am5.Label.new(root, {
+      text: qrtList[0],
+      fontSize: "5em",
+      fill: am5.color(0x000000),
+      opacity: 0.3
+    }));
+
+    // Create controls
+    var container = chart.plotContainer.children.push(am5.Container.new(root, {
+      y: am5.p100,
+      centerX: am5.p50,
+      centerY: am5.p100,
+      x: am5.p50,
+      width: am5.percent(90),
+      layout: root.horizontalLayout,
+      paddingBottom: 10
+    }));
+
+    var playButton = container.children.push(am5.Button.new(root, {
+      themeTags: ["play"],
+      centerY: am5.p50,
+      marginRight: 20,
+      icon: am5.Graphics.new(root, {
+        themeTags: ["icon"]
+      })
+    }));
+
+    playButton.events.on("click", function () {
+      if (playButton.get("active")) {
+        slider.set("start", slider.get("start") + 0.0001);
+      } else {
+        slider.animate({
+          key: "start",
+          to: 1,
+          duration: 85000 * (1 - slider.get("start")) //this sets speed of animation
+        });
+      }
+    });
+
+    var slider = container.children.push(am5.Slider.new(root, {
+      orientation: "horizontal",
+      start: 0,
+      centerY: am5.p50
+    }));
+
+    slider.on("start", function (start) {
+      if (start === 1) {
+        playButton.set("active", false);
+      }
+    });
+
+    // slider.events.on("rangechanged", function () {
+    //   console.log("slider: "+Math.round(slider.get("start", 0) * (lastYear - firstYear)))
+    //   updateSeriesData(
+    //     firstYear + Math.round(slider.get("start", 0) * (lastYear - firstYear))
+    //   );
+    // });
+
+    slider.events.on("rangechanged", function () {
+
+      //this makes it an index for qrts
+      console.log("slider: " + Math.round((100 * (slider.get("start", 0)))))
+      updateSeriesData(
+        Math.round((100 * (slider.get("start", 0))))
+      );
+    });
+
+    //       chart.children.push( am5.Graphics.new(root, {
+    //   stroke: am5.color(0x000000),
+    //   fill: am5.color(0x990000),
+    //   draw: function(display) {
+    //     display.moveTo(25, 0);
+    //     display.lineTo(50, 50);
+    //     display.lineTo(0, 50);
+    //     display.lineTo(25, 0);
+    //   }
+    // }));
+    function updateSeriesData(index) {
+
+      console.log("index: " + index);
+      if (index != 0 && index < qrtList.length) {
         let qrt = qrtList[index];
         //console.log("qrt: "+quarterData[qrt]);
 
@@ -397,41 +768,41 @@
         //   currentYear = year;
         //   var data = yearData[year];
 
-           var i = 0;
-           am5.array.each(data, function (item) {
-             series.data.setIndex(i, item);
-             i++;
-           });
+        var i = 0;
+        am5.array.each(data, function (item) {
+          series.data.setIndex(i, item);
+          i++;
+        });
 
-          label.set("text", qrt);
-        } else {
-          if(index == qrtList.length){
+        label.set("text", qrt);
+      } else {
+        if (index == qrtList.length) {
           slider.set("start", slider.get("start") + 0.0001);
-          }
         }
       }
+    }
 
-      // function updateSeriesData(year) {
-      //   if (currentYear != year) {
-      //     currentYear = year;
-      //     var data = yearData[year];
+    // function updateSeriesData(year) {
+    //   if (currentYear != year) {
+    //     currentYear = year;
+    //     var data = yearData[year];
 
-      //     var i = 0;
-      //     am5.array.each(data, function (item) {
-      //       series.data.setIndex(i, item);
-      //       i++;
-      //     });
+    //     var i = 0;
+    //     am5.array.each(data, function (item) {
+    //       series.data.setIndex(i, item);
+    //       i++;
+    //     });
 
-      //     label.set("text", year.toString());
-      //   }
-      // }
-      qrt = qrtList[0];
-      series.data.setAll(quarterData[qrt]);
+    //     label.set("text", year.toString());
+    //   }
+    // }
+    qrt = qrtList[0];
+    series.data.setAll(quarterData[qrt]);
 
-      // Make stuff animate on load
-      // https://www.amcharts.com/docs/v5/concepts/animations/
-      series.appear(1000);
-      chart.appear(1000, 100);
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
+    series.appear(1000);
+    chart.appear(1000, 100);
   }); // end am5.ready()
 </script>
 
