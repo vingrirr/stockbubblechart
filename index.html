@@ -2,7 +2,7 @@
 <style>
   #chartdiv {
     width: 100%;
-    height: 500px;
+    height: 75%;
     max-width: 100%;
   }
 </style>
@@ -16,8 +16,10 @@
 <!-- Chart code -->
 <script>
 
-
-
+  let qrt="";
+  let quarterData = {};
+  let qrtArray = [];
+  let qrtResult = {};
   let qrtList = ["Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023"];
   let stockList = ["CRM",	"CRWD","DDOG","DOCN","DOCU","DT",	"ESTC","FORG","FSLY","FTNT","GTLB","HUBS","MDB",	"MSFT","NCNO","NET","OKTA","PANW","PD","PLTR","S","SNOW","TENB","TTD","TWLO","U","VEEV","ZS"];
 
@@ -41,15 +43,13 @@
     ]);
 
 
-    let quarterData = {};
-    let qrtArray = [];
-  
-    let qrtResult = {};
 
-    for(let qrt in qrtList){
+
+    for(let x=0; x< qrtList.length; x++){
       for (let i=0; i< stockList.length; i++){
 
-        qrtResult.x = getRandomIntInclusive(10,90);
+        qrt = qrtList[x];
+        qrtResult.x = getRandomIntInclusive(10,45);
         qrtResult.y = getRandomIntInclusive(10,90);
         qrtResult.value = stockList[i];
         qrtArray.push(qrtResult);
@@ -61,7 +61,6 @@
 
     }
 
-    let x=0;
     //let qrt = ;
     // qrtResult.x = 20;
     // qrtResult.y = 10;
@@ -319,7 +318,7 @@
           slider.animate({
             key: "start",
             to: 1,
-            duration: 15000 * (1 - slider.get("start")) //this sets speed of animation
+            duration: 85000 * (1 - slider.get("start")) //this sets speed of animation
           });
         }
       });
@@ -354,7 +353,7 @@
       function updateSeriesData(index) {
 
         console.log("index: "+index);
-        if (index != 0 && index <4){
+        if (index != 0 && index < qrtList.length){
         let qrt = qrtList[index];
         //console.log("qrt: "+quarterData[qrt]);
 
@@ -371,7 +370,7 @@
 
           label.set("text", qrt);
         } else {
-          if(index ==4){
+          if(index == qrtList.length){
           slider.set("start", slider.get("start") + 0.0001);
           }
         }
