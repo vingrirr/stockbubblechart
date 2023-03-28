@@ -7,34 +7,7 @@
   }
 </style>
 
-<!-- CRM	
-CRWD
-DDOG
-DOCN
-DOCU
-DT	
-ESTC
-FORG
-FSLY
-FTNT
-GTLB
-HUBS
-MDB	
-MSFT
-NCNO
-NET	
-OKTA	
-PANW	
-PD	
-PLTR
-S	
-SNOW
-TENB
-TTD	
-TWLO
-U	
-VEEV	
-ZS -->
+
 <!-- Resources -->
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
@@ -42,8 +15,18 @@ ZS -->
 
 <!-- Chart code -->
 <script>
-  
-  let qrtList = [];
+
+
+
+  let qrtList = ["Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023"];
+  let stockList = ["CRM",	"CRWD","DDOG","DOCN","DOCU","DT",	"ESTC","FORG","FSLY","FTNT","GTLB","HUBS","MDB",	"MSFT","NCNO","NET","OKTA","PANW","PD","PLTR","S","SNOW","TENB","TTD","TWLO","U","VEEV","ZS"];
+
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+  }
+
 
   am5.ready(function () {
 
@@ -63,100 +46,44 @@ ZS -->
   
     let qrtResult = {};
 
-    let qrt = "Q1 2020";
+    for(let qrt in qrtList){
+      for (let stock in stockList){
 
-    qrtResult.x = 20;
-    qrtResult.y = 10;
-    qrtResult.value = "GTLB";
-    qrtArray.push(qrtResult);
-qrtResult = {};
+        qrtResult.x = getRandomIntInclusive(10,90);
+        qrtResult.y = getRandomIntInclusive(10,90);
+        qrtResult.value = stock;
+        qrtArray.push(qrtResult);
+        
+        qrtResult = {};
+      }
+      quarterData[qrt] = qrtArray;
+      qrtArray = [];
 
-    qrtResult.x = 40;
-    qrtResult.y = 50;
-    qrtResult.value = "MSFT";
-    qrtArray.push(qrtResult);
-qrtResult = {};
+    }
 
-    qrtResult.x = 50;
-    qrtResult.y = 30;
-    qrtResult.value = "NET";
-    qrtArray.push(qrtResult);
-qrtResult = {};
+    let x=0;
+    //let qrt = ;
+    // qrtResult.x = 20;
+    // qrtResult.y = 10;
+    // qrtResult.value = "GTLB";
+    // qrtArray.push(qrtResult);
+    // qrtResult = {};
 
-    qrtList.push(qrt);
-    quarterData[qrt] = qrtArray;
-    qrtArray = [];
+    // qrtResult.x = 40;
+    // qrtResult.y = 50;
+    // qrtResult.value = "MSFT";
+    // qrtArray.push(qrtResult);
+    // qrtResult = {};
 
-    qrt = "Q2 2020";
-    qrtResult.x = 25;
-    qrtResult.y = 15;
-    qrtResult.value = "GTLB";
-    qrtArray.push(qrtResult);
-    qrtResult = {};
+    // qrtResult.x = 50;
+    // qrtResult.y = 30;
+    // qrtResult.value = "NET";
+    // qrtArray.push(qrtResult);
+    // qrtResult = {};
 
-    qrtResult.x = 45;
-    qrtResult.y = 55;
-    qrtResult.value = "MSFT";6
-    qrtArray.push(qrtResult);
-    qrtResult = {};
-
-    qrtResult.x = 55;
-    qrtResult.y = 35;
-    qrtResult.value = "NET";
-    qrtArray.push(qrtResult);
-    qrtResult = {};
-
-    qrtList.push(qrt);
-    quarterData[qrt] = qrtArray;
-    qrtArray = [];
-
-
-    qrt = "Q3 2020";
-    qrtResult.x = 30;
-    qrtResult.y = 20;
-    qrtResult.value = "GTLB";
-    qrtArray.push(qrtResult);
-qrtResult = {};
-
-    qrtResult.x = 50;
-    qrtResult.y = 60;
-    qrtResult.value = "MSFT";
-    qrtArray.push(qrtResult);
-    qrtResult = {};
-
-    qrtResult.x = 60;
-    qrtResult.y = 40;
-    qrtResult.value = "NET";
-    qrtArray.push(qrtResult);
-qrtResult = {};
-
-    qrtList.push(qrt);
-    quarterData[qrt] = qrtArray;
-qrtArray = [];
-
-
-    qrt = "Q4 2020";
-    qrtResult.x = 35;
-    qrtResult.y = 25;
-    qrtResult.value = "GTLB";
-    qrtArray.push(qrtResult);
-qrtResult = {};
-
-    qrtResult.x = 55;
-    qrtResult.y = 65;
-    qrtResult.value = "MSFT";
-    qrtArray.push(qrtResult);
-qrtResult = {};
-
-    qrtResult.x = 65;
-    qrtResult.y = 45;
-    qrtResult.value = "NET";
-    qrtArray.push(qrtResult);
-    qrtResult = {};
-
-    qrtList.push(qrt);
-    quarterData[qrt] = qrtArray;
-    qrtArray = [];
+    // qrtList.push(qrt);
+    // quarterData[qrt] = qrtArray;    
+    // qrtArray = [];
 
 
     //  for (var year = firstYear; year <= lastYear; year++) {
