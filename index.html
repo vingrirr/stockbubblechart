@@ -47,11 +47,11 @@
     let qrtResult = {};
 
     for(let qrt in qrtList){
-      for (let stock in stockList){
+      for (let i=0; i< stockList.length; i++){
 
         qrtResult.x = getRandomIntInclusive(10,90);
         qrtResult.y = getRandomIntInclusive(10,90);
-        qrtResult.value = stock;
+        qrtResult.value = stockList[i];
         qrtArray.push(qrtResult);
         
         qrtResult = {};
