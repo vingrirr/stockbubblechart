@@ -23,6 +23,39 @@
   let qrtList = ["Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023"];
   let stockList = ["CRM",	"CRWD","DDOG","DOCN","DOCU","DT",	"ESTC","FORG","FSLY","FTNT","GTLB","HUBS","MDB",	"MSFT","NCNO","NET","OKTA","PANW","PD","PLTR","S","SNOW","TENB","TTD","TWLO","U","VEEV","ZS"];
 
+  let randData ={
+      "CRM": [21, 25],
+      "CRWD": [17, 58],
+      "DDOG": [17, 58],
+      "DOCN": [9, 34],
+      "DOCU": [7, 16],
+      "DT": [33, 26],
+      "ESTC": [-5, 44],
+      "FORG": [-26, 20],
+      "FSLY": [-32, 22],
+      "FTNT": [33, 42],
+      "GTLB": [-32, 70],
+      "HUBS": [11, 34],
+      "MDB": [-3, 53],
+      "MSFT": [37, 10],
+      "NCNO": [-12,34],
+      "NET": [-17, 0.3],
+      "OKTA": [-3, 61],
+      "PANW": [29, 26],
+      "PD": [-9, 33],
+      "PLTR": [6, 24],
+      "S": [8, 25],
+      "SNOW": [55, 11],
+      "TENB": [20, 26],
+      "TTD": [31, 32],
+      "TWLO": [-12, 51],
+      "U": [-7, 25],
+      "VEEV": [39, 16],
+      "ZS": [11, 57]
+  };
+
+
+
   function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -32,6 +65,8 @@
 
   am5.ready(function () {
 
+
+    let d = randData["CRM"];
     // Create root element
     // https://www.amcharts.com/docs/v5/getting-started/#Root_element
     var root = am5.Root.new("chartdiv");
