@@ -23,35 +23,35 @@
   let qrtList = ["Q1 2020", "Q2 2020", "Q3 2020", "Q4 2020", "Q1 2021", "Q2 2021", "Q3 2021", "Q4 2021", "Q1 2022", "Q2 2022", "Q3 2022", "Q4 2022", "Q1 2023"];
   let stockList = ["CRM", "CRWD", "DDOG", "DOCN", "DOCU", "DT", "ESTC", "FORG", "FSLY", "FTNT", "GTLB", "HUBS", "MDB", "MSFT", "NCNO", "NET", "OKTA", "PANW", "PD", "PLTR", "S", "SNOW", "TENB", "TTD", "TWLO", "U", "VEEV", "ZS"];
 
-  let randData ={
-      "CRM": [21, 25],
-      "CRWD": [17, 58],
-      "DDOG": [14, 56],
-      "DOCN": [9, 34],
-      "DOCU": [7, 16],
-      "DT": [33, 26],
-      "ESTC": [-5, 44],
-      "FORG": [-26, 20],
-      "FSLY": [-32, 22],
-      "FTNT": [33, 42],
-      "GTLB": [-32, 70],
-      "HUBS": [11, 34],
-      "MDB": [-3, 53],
-      "MSFT": [37, 10],
-      "NCNO": [-12,34],
-      "NET": [-17,52],
-      "OKTA": [-3, 61],
-      "PANW": [29, 26],
-      "PD": [-9, 33],
-      "PLTR": [6, 24],
-      "S": [8, 25],
-      "SNOW": [55, 11],
-      "TENB": [20, 26],
-      "TTD": [31, 32],
-      "TWLO": [-12, 51],
-      "U": [-7, 25],
-      "VEEV": [39, 16],
-      "ZS": [11, 57]
+  let randData = {
+    "CRM": [21, 25],
+    "CRWD": [17, 58],
+    "DDOG": [14, 56],
+    "DOCN": [9, 34],
+    "DOCU": [7, 16],
+    "DT": [33, 26],
+    "ESTC": [-5, 44],
+    "FORG": [-26, 20],
+    "FSLY": [-32, 22],
+    "FTNT": [33, 42],
+    "GTLB": [-32, 70],
+    "HUBS": [11, 34],
+    "MDB": [-3, 53],
+    "MSFT": [37, 10],
+    "NCNO": [-12, 34],
+    "NET": [-17, 52],
+    "OKTA": [-3, 61],
+    "PANW": [29, 26],
+    "PD": [-9, 33],
+    "PLTR": [6, 24],
+    "S": [8, 25],
+    "SNOW": [55, 11],
+    "TENB": [20, 26],
+    "TTD": [31, 32],
+    "TWLO": [-12, 51],
+    "U": [-7, 25],
+    "VEEV": [39, 16],
+    "ZS": [11, 57]
   };
 
 
@@ -94,18 +94,18 @@
         qrt = qrtList[x];
         var stk = stockList[i];
         var vals = randData[stk];
-        if (x==0){
-        qrtResult.x = vals[0];
-        qrtResult.y = vals[1];
-        }else{
-          let newX = vals[0] + getRandomIntInclusive(-3,10);
-          let newY = vals[1] + getRandomIntInclusive(-3,10);
+        if (x == 0) {
+          qrtResult.x = vals[0];
+          qrtResult.y = vals[1];
+        } else {
+          let newX = vals[0] + getRandomIntInclusive(-3, 7);
+          let newY = vals[1] + getRandomIntInclusive(-3, 7);
           qrtResult.x = newX;
-          qrtResult.y = newY; 
-          
+          qrtResult.y = newY;
+
           //now set the values to the new value so we are constantly adding
-          randData[stk][0] = newX; 
-          randData[stk][1] = newY; 
+          randData[stk][0] = newX;
+          randData[stk][1] = newY;
 
 
         }
@@ -132,19 +132,34 @@
     // Create axes
     // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
-      text: "TTM Unlevered Pretax FCR Margin %",
-
+      min: -50,
+      max: 120,
       numberFormat: "#'%'",
       renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 50 }),
       tooltip: am5.Tooltip.new(root, {})
     }));
 
-    var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
-      text: "TTM Revenue Growth %",
+    xAxis.children.push(am5.Label.new(root, {
+      text: 'TTM Unlevered Pretax FCR Margin %',
+      textAlign: 'center',
+      x: am5.p50,
+      fontWeight: 'bold'
+    }));
 
+    var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {      
+      min: 0,
+      max: 120,
       numberFormat: "#'%'",
       renderer: am5xy.AxisRendererY.new(root, {}),
       tooltip: am5.Tooltip.new(root, {})
+    }));
+
+    yAxis.children.push(am5.Label.new(root, {
+      text: "TTM Revenue Growth %",
+      textAlign: 'center',
+      y: am5.p50,
+      rotation: -90,
+      fontWeight: 'bold'
     }));
 
     // color fills
@@ -153,64 +168,17 @@
       yAxis: yAxis,
       valueXField: "ax",
       valueYField: "ay",
-      fill: am5.color(0xe3853c)
+      fill: am5.color(0x69B92E)
     }));
-    series0.fills.template.setAll({ fillOpacity: 0.9, visible: true });
+    series0.fills.template.setAll({ fillOpacity: 0.5, visible: true });
     series0.strokes.template.set("forceHidden", true);
     series0.data.setAll([
-      { ax: -50, ay: 100 },
-      { ax: 50, ay: 100 },
-      { ax: 50, ay: 0 },
-      { ax: -50, ay: 0 }
+      { ax: 25, ay: 120 },
+      { ax: 120, ay: 120 },
+      { ax: 120, ay: 40 },
+      { ax: 25, ay: 40 }
     ]);
 
-    // var series1 = chart.series.push(am5xy.LineSeries.new(root, {
-    //   xAxis: xAxis,
-    //   yAxis: yAxis,
-    //   valueXField: "ax",
-    //   valueYField: "ay",
-    //   fill: am5.color(0x48b2b7)
-    // }));
-    // series1.fills.template.setAll({ fillOpacity: 0.9, visible: true });
-    // series1.strokes.template.set("forceHidden", true);
-    // series1.data.setAll([
-    //   { ax: -200, ay: 0 },
-    //   { ax: 0, ay: 0 },
-    //   { ax: 0, ay: -200 },
-    //   { ax: -200, ay: -200 }
-    // ]);
-
-    // var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-    //   xAxis: xAxis,
-    //   yAxis: yAxis,
-    //   valueXField: "ax",
-    //   valueYField: "ay",
-    //   fill: am5.color(0x91d1da)
-    // }));
-    // series2.fills.template.setAll({ fillOpacity: 0.9, visible: true });
-    // series2.strokes.template.set("forceHidden", true);
-    // series2.data.setAll([
-    //   { ax: 200, ay: 0 },
-    //   { ax: 0, ay: 0 },
-    //   { ax: 0, ay: -200 },
-    //   { ax: 200, ay: -200 }
-    // ]);
-
-    // var series3 = chart.series.push(am5xy.LineSeries.new(root, {
-    //   xAxis: xAxis,
-    //   yAxis: yAxis,
-    //   valueXField: "ax",
-    //   valueYField: "ay",
-    //   fill: am5.color(0xe8c634)
-    // }));
-    // series3.fills.template.setAll({ fillOpacity: 0.9, visible: true });
-    // series3.strokes.template.set("forceHidden", true);
-    // series3.data.setAll([
-    //   { ax: 200, ay: 0 },
-    //   { ax: 0, ay: 0 },
-    //   { ax: 0, ay: 200 },
-    //   { ax: 200, ay: 200 }
-    // ]);
 
     // move grid forward
     chart.plotContainer.children.moveValue(
@@ -307,7 +275,7 @@
       centerX: am5.p50,
       centerY: am5.p100,
       x: am5.p50,
-      width: am5.percent(90),
+      width: am5.percent(100),
       layout: root.horizontalLayout,
       paddingBottom: 10
     }));
