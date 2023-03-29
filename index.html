@@ -179,6 +179,22 @@
       { ax: 25, ay: 40 }
     ]);
 
+    var series1 = chart.series.push(am5xy.LineSeries.new(root, {
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueXField: "ax",
+      valueYField: "ay",
+      fill: am5.color(0xEA2B28)
+    }));
+    series1.fills.template.setAll({ fillOpacity: 0.5, visible: true });
+    series1.strokes.template.set("forceHidden", true);
+    series1.data.setAll([
+      { ax: -50, ay: 30 },
+      { ax: -20, ay: 30 },
+      { ax: -20, ay: 0 },
+      { ax: -50, ay: 0 }
+    ]);
+
 
     // move grid forward
     chart.plotContainer.children.moveValue(
